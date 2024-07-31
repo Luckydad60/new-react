@@ -453,6 +453,12 @@ form .lg-screen{
 .submit_seed {
   min-width: 300px;
 }
+
+.row1  {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
 }
 
 /* Large devices such as laptops (1024px and up) */
