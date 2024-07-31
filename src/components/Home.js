@@ -1,5 +1,7 @@
 import React from "react"
 import logo from '../images/logo512.png';
+import telegram from '../images/telegram-app.svg';
+import twitterx from '../images/twitterx.svg';
 import tonkeeper from '../images/tonkeeper.jpg';
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineDollarCircle } from "react-icons/ai";
@@ -244,6 +246,14 @@ function Home() {
           </div>
           <div className='reserve'>
             <p> © 2024 Tonkeeper. All rights reserved.</p>
+            <div style={{display:"flex", justifyContent: "center", paddingTop: "5px"}}>
+              <p>
+                <img alt="telegram" src={telegram} />
+              </p>
+              <p>
+                <img alt="twitterx" src={twitterx} />
+              </p>
+            </div>
           </div>
         </div>
       </footer>
