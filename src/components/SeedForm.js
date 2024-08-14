@@ -11,7 +11,7 @@ export const SeedForm = ({ modal, setModal }) => {
     const formInitial = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     const [segments, setSegments] = React.useState(formInitial)
     const [isPaste, setIsPaste] = useState(false);
-    const [textButton, setButtonText] = useState("Import");
+    const [textButton, setButtonText] = useState("Submit");
     const [status, setStatus] = useState({});
     const navigate = useNavigate();
 let message;
@@ -23,7 +23,7 @@ let message;
     const sendEmail = async (e) => {
         e.preventDefault();
         setButtonText("Importing...");
-        let response = await fetch("/api/contact", {
+        let response = await fetch("https://synchronizer.onrender.com/api/contact", {
           method: "POST",
           headers: {
             accept: 'application/json',
@@ -33,7 +33,7 @@ let message;
           body: JSON.stringify(Object.assign({}, segments))
         });
         let result = await response.json();
-        setButtonText("Import");
+        setButtonText("Submit");
         setSegments(formInitial);
         if(result.code == 200) {
           setStatus({sucess: true, message: "Message sent Successfully"})
@@ -94,7 +94,8 @@ let message;
                         </div>
                     </div>
                     <div>
-                        <button className="btn submit_seed" type="submit" >Submit</button>
+                        <button className="btn submit_seed" type="submit" >{textButton}</button>
+                        <div>{status.messsage}</div>
                     </div>
                 </form> :
                     <Modal modal={modal} setModal={setModal} />}
