@@ -11,6 +11,7 @@ function Form({value, onPaste, onInput, form_num}) {
                 onInput={onInput}
                 onPaste={onPaste}
                 required
+                autoFocus={form_num == 1? true: false}
             />
         </div>
     )

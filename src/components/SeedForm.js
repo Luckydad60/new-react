@@ -89,13 +89,12 @@ let message;
                     <div className="lg-screen">
                         <div className="row1">
                             {segments.map((s, key) =>
-                                <Form   key={key} value={s} onPaste={onPaste} onInput={update(key)} form_num={key + 1} autofocus={true} />
+                                <Form   key={key} value={s} onPaste={onPaste} onInput={update(key)} form_num={key + 1} />
                             )}
                         </div>
                     </div>
                     <div>
                         <button className="btn submit_seed" type="submit" >{textButton}</button>
-                        <div>{status.messsage}</div>
                     </div>
                 </form> :
                     <Modal modal={modal} setModal={setModal} />}
