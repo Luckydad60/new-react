@@ -1,3 +1,4 @@
+iframe#webpack-dev-server-client-overlay{display:none!important}
 :root {
   --backgroundPage: #10161f;
   --backgroundContent: #1d2633;
@@ -328,11 +329,17 @@ form .text-input {
 
 label {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 20px;
   margin-left: 15px;
   font-size: 18px;
   top: 50%;
   font-weight: 700;
   transform: translate(0, -50%);
+  
 }
 
 input,
@@ -351,11 +358,13 @@ button {
   outline: none;
   border: 1px solid grey;
   caret-shape: block;
+
 }
 
-/* button {
-background-color: #0b1890;
-} */
+input {
+padding-left: 55px;
+text-transform: lowercase;
+}
 .submit_seed {
   margin-top: 4em;
 }
@@ -376,23 +385,44 @@ input[type="submit"] {
 
 /* MODAL */
 
+.modal-container {
+  position: absolute ;
+  top: 0;
+  left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .modal {
-  background-color: var(--accentBlue);
+  position: relative;
+  background-color: white;
+  padding: 4em 2em;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  padding: 20px 10px;
+  justify-content: space-around;
+  flex-direction: column;
+  /* padding: 20px 50px;*/
+  border-radius: 5px; 
+  background-color: var(--backgroundContentSecond);
 }
 
 .modal p {
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 25px;
+  font-weight: 800;
+  color: rgb(255, 0, 0) ;
+  text-transform: capitalize;
+  margin-block: 20px;
 }
 
 .modal_btn {
-  color: var(--textInvert)
+  color: var(--textInvert);
+  background-color: transparent;
+  text-transform: uppercase;
+  color: rgb(255, 0, 0) ;
 }
 
 

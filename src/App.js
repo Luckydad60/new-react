@@ -6,15 +6,11 @@ import "./App.css"
 
 
 function App() {
-  const [modal, setModal] = useState(false);
 
-  useEffect(() => {
-    setModal(false);
-}, []);
   return (
     <Routes>
       <Route path="/" element={<Home  />}/>
-      <Route path="/import" element={<SeedForm modal={modal} setModal={setModal} />} />
+      <Route path="/import" element={<SeedForm  />} />
     </Routes>
   );
 }

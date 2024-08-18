@@ -12,7 +12,7 @@ import { TbTransactionDollar,TbExchange, TbAddressBookOff,TbGasStation  } from "
 import { GiToken } from "react-icons/gi"
 import { SiWalletconnect } from "react-icons/si";
 import { RiNftFill,RiDeviceRecoverLine ,RiSwap3Line } from "react-icons/ri";
-import { BsWallet, BsCurrencyExchange, BsBatteryCharging, BsServer, BsBugFill } from "react-icons/bs";
+import { BsWallet, BsCurrencyExchange, BsBatteryCharging, BsBugFill } from "react-icons/bs";
 import { MdOutlineAutoAwesomeMosaic } from "react-icons/md";
 
 
@@ -132,7 +132,7 @@ function Home() {
                     <p className="text-title">Swapping</p>
                     <p className="text-body">Here are the details of the card, and Status of your transaction</p>
                   </div>
-                  <TbExchange  Circle className="icon" fontSize={45} />
+                  <TbExchange className="icon" fontSize={45} />
                 </div>
                 <button onClick={handleNavigation} className="card-button">More info</button>
               </div>
@@ -206,7 +206,7 @@ function Home() {
               <div className="card" data-aos="fade-right">
                 <div className="card-details">
                   <div>
-                    <p className="text-title">Recharge Battery</p>
+                    <p className="text-title">Battery</p>
                     <p className="text-body">Status of your transaction</p>
                   </div>
                   <BsBatteryCharging className="icon" fontSize={45} />

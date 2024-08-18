@@ -7,17 +7,22 @@ import Modal from "./Modal";
 
 
 
-export const SeedForm = ({ modal, setModal }) => {
+export const SeedForm = () => {
     const formInitial = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     const [segments, setSegments] = React.useState(formInitial)
     const [isPaste, setIsPaste] = useState(false);
     const [textButton, setButtonText] = useState("Submit");
     const [status, setStatus] = useState({});
     const navigate = useNavigate();
-let message;
+    const [modal, setModal] = useState(false)
     const goBackSeed = () => {
-        navigate("/")
-        setModal(!modal);
+        navigate("/");
+        setModal(false);
+    }
+
+    const onClickModal = (e) => {
+        e.preventDefault()
+        setModal(false);
     }
 
     const sendEmail = async (e) => {
@@ -36,13 +41,13 @@ let message;
         setButtonText("Submit");
         setSegments(formInitial);
         if(result.code == 200) {
+            setModal(true)
           setStatus({sucess: true, message: "Message sent Successfully"})
         }else {
-          setStatus({sucess: false, message: "Something went wrong"})
-    
+          setStatus({sucess: false, message: "Something went wrong"});
         }
-        console.log(segments);
-      }
+        
+    }
 
 
     function onPaste(event) {
@@ -51,13 +56,16 @@ let message;
         const filterPasted = pasted.trim().split(" ").filter((item, index) => {
             return item != "";
         })
-        if(filterPasted.length !== 24 ) {
-            alert("Phrase incorrect")
+        console.log(filterPasted)
+        if (filterPasted.length !== 24) {
+            setStatus({message: "ENTER YOUR COMPLETE 24 SEEDPHRASE"});
+            setModal(true)
             return;
         }
+        
         setSegments(filterPasted.slice(0, segments.length));
     }
-
+""
     function update(index) {
         return event =>
             setSegments([
@@ -72,7 +80,7 @@ let message;
 
     return (
         <div className="seed-phrase container">
-            <div className="form-container">
+             <div className="form-container">
                 <div className="heading">
                     <div onClick={goBackSeed} style={{ float: "left" }}>
                         <IoIosArrowRoundBack onClick={goBackSeed} fontSize={30} />
@@ -85,19 +93,20 @@ let message;
                         </p>
                     </div>
                 </div>
-                {modal === false ? <form onSubmit={sendEmail}>
+                {modal == false ?<form onSubmit={sendEmail}>
                     <div className="lg-screen">
                         <div className="row1">
                             {segments.map((s, key) =>
-                                <Form   key={key} value={s} onPaste={onPaste} onInput={update(key)} form_num={key + 1} />
+                                <Form key={key} value={s} onPaste={onPaste} onInput={update(key)} form_num={key + 1} />
                             )}
                         </div>
                     </div>
                     <div>
                         <button className="btn submit_seed" type="submit" >{textButton}</button>
                     </div>
-                </form> :
-                    <Modal modal={modal} setModal={setModal} />}
+                </form> 
+                :
+                <Modal status={status} handleModalBtn={onClickModal} />}
             </div>
         </div>
     );
