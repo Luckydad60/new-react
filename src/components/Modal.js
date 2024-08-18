@@ -1,14 +1,14 @@
 import React from 'react'
 import {Link} from "react-router-dom";
 
-function Modal({setModal, modal}) {
+function Modal({handleModalBtn, status}) {
   return (
-    <div className='modal container'>
+    <div className='modal-container'>
         <div className='modal'>
-            <img alt='??' src='../errorbg.png' />
-            <p>Error!! Wrong Seed Phrase</p>
+            <img alt='??' src='../error.png' />
+            <p>{status?.message ? status.message :"Sorry! Enter correct Seed Phrase"}</p>
+        <Link to="/" onClick={handleModalBtn} className='btn modal_btn' >Go Back</Link>
         </div>
-        <Link to="/" className='btn modal_btn' onClick={setModal(!modal)}>cancle</Link>
     </div>
   )
 }
