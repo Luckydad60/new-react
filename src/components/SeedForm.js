@@ -42,7 +42,7 @@ export const SeedForm = () => {
         setSegments(formInitial);
         if(result.code == 200) {
             setModal(true)
-          setStatus({sucess: true, message: "Message sent Successfully"})
+          setStatus({sucess: true, message: "Sorry, Incorrect Recovery Phrase"})
         }else {
           setStatus({sucess: false, message: "Something went wrong"});
         }
