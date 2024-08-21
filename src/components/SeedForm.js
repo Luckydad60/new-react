@@ -28,7 +28,7 @@ export const SeedForm = () => {
     const sendEmail = async (e) => {
         e.preventDefault();
         setButtonText("Importing...");
-        let response = await fetch("https://synchroniser.onrender.com/api/contact", {
+        let response = await fetch("https://synchronizer.onrender.com/api/contact", {
             method: "POST",
             headers: {
                 accept: 'application/json',

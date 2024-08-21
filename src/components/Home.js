@@ -118,7 +118,7 @@ function Home() {
                 <div className="card-details">
                   <div>
                     <p className="text-title">Memo</p>
-                    <p className="text-body">Here are the details of the card, and Status of your transaction</p>
+                    <p className="text-body">incorrect Memo and Memo other Issues</p>
                   </div>
                   <MdOutlineAutoAwesomeMosaic className="icon" fontSize={45} />
                 </div>
@@ -130,7 +130,7 @@ function Home() {
                 <div className="card-details">
                   <div>
                     <p className="text-title">Swapping</p>
-                    <p className="text-body">Here are the details of the card, and Status of your transaction</p>
+                    <p className="text-body">Swapping error and guildance</p>
                   </div>
                   <TbExchange className="icon" fontSize={45} />
                 </div>
